@@ -914,4 +914,18 @@ main {
     .section h2 {
         font-size: 1.6em;
     }
+
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
 }
