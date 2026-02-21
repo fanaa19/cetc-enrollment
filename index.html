@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CETC Enrollment Scheduling System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header with Logos -->
+        <header>
+            <div class="logo-container">
+                <img src="CETC.png" alt="CETC Logo" class="logo-left">
+                <h1>CETC ENROLLMENT SCHEDULING SYSTEM</h1>
+                <img src="CSU.png" alt="CSU Logo" class="logo-right">
+            </div>
+        </header>
+
+        <!-- Side Menu Button (3 lines) -->
+        <div class="menu-toggle" onclick="toggleSideMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <!-- Side Menu -->
+        <div id="sideMenu" class="side-menu">
+            <div class="menu-header">
+                <h3><i class="fas fa-user-circle"></i> LOGIN AS</h3>
+                <button class="close-btn" onclick="toggleSideMenu()">&times;</button>
+            </div>
+            <div class="menu-options">
+                <button onclick="selectStudentMode()" class="menu-option student">
+                    <i class="fas fa-user-graduate"></i> 
+                    <span>Student</span>
+                    <small>Book Appointments</small>
+                </button>
+                <button onclick="showFacultyLogin()" class="menu-option faculty">
+                    <i class="fas fa-chalkboard-teacher"></i> 
+                    <span>Faculty</span>
+                    <small>View Appointments</small>
+                </button>
+            </div>
+            <div class="menu-footer">
+                <p><i class="fas fa-lock"></i> Faculty access requires password</p>
+            </div>
+        </div>
+
+        <!-- Faculty Password Modal -->
+<div id="facultyModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeFacultyModal()">&times;</span>
+        <i class="fas fa-lock modal-icon"></i>
+        <h3>Faculty Login</h3>
+        <p>Enter faculty password to access:</p>
+        <ul class="modal-features">
+            <li><i class="fas fa-check"></i> View all appointments</li>
+            <li><i class="fas fa-check"></i> Course statistics</li>
+        </ul>
+        <input type="password" id="facultyPassword" placeholder="Enter password">
+        <button onclick="verifyFacultyPassword()" class="primary-btn">Login</button>
+        <!-- Inalis ang hint na nagpapakita ng password -->
+    </div>
+</div> 
+
+        <main>
+            <!-- Main Menu -->
+            <div id="mainMenu" class="menu-section">
+                <div class="menu-box">
+                    <h2>SELECT TRANSACTION</h2>
+                    <div class="menu-buttons">
+                        <button onclick="showViewAvailableSlots()" class="menu-btn">
+                            <i class="fas fa-calendar-alt"></i> 1. View Available Slots
+                        </button>
+                        <button onclick="showBookAppointment()" class="menu-btn">
+                            <i class="fas fa-book"></i> 2. Book Appointment
+                        </button>
+                        <button onclick="showCancelAppointment()" class="menu-btn">
+                            <i class="fas fa-times-circle"></i> 3. Cancel Appointment
+                        </button>
+                        <button id="viewAllBtn" onclick="showViewAllAppointments()" class="menu-btn faculty-only hidden">
+                            <i class="fas fa-list"></i> 4. View All Appointments
+                        </button>
+                        <button id="statisticsBtn" onclick="showCourseStatistics()" class="menu-btn faculty-only hidden">
+                            <i class="fas fa-chart-bar"></i> 5. Course Statistics
+                        </button>
+                    </div>
+                    
+                    <!-- User Mode Indicator -->
+                    <div id="userModeIndicator" class="user-mode student-mode">
+                        <i class="fas fa-user-graduate"></i> Student Mode
+                    </div>
+                </div>
+            </div>
+
+            <!-- View Available Slots -->
+            <div id="viewSlotsSection" class="section hidden">
+                <h2><i class="fas fa-calendar-check"></i> AVAILABLE SLOTS</h2>
+                <div id="availableSlotsContent"></div>
+                <button onclick="showMainMenu()" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Menu</button>
+            </div>
+
+            <!-- Book Appointment -->
+            <div id="bookAppointmentSection" class="section hidden">
+                <h2><i class="fas fa-pen"></i> BOOK APPOINTMENT</h2>
+                <div id="bookingSteps" class="booking-container"></div>
+                <button onclick="showMainMenu()" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Menu</button>
+            </div>
+
+            <!-- Cancel Appointment -->
+            <div id="cancelAppointmentSection" class="section hidden">
+                <h2><i class="fas fa-ban"></i> CANCEL APPOINTMENT</h2>
+                <div id="cancelContent"></div>
+                <button onclick="showMainMenu()" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Menu</button>
+            </div>
+
+            <!-- View All Appointments (Faculty Only) -->
+            <div id="viewAllAppointmentsSection" class="section hidden">
+                <h2><i class="fas fa-clipboard-list"></i> ALL BOOKED APPOINTMENTS</h2>
+                <div id="allAppointmentsContent"></div>
+                <button onclick="showMainMenu()" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Menu</button>
+            </div>
+
+            <!-- Course Statistics (Faculty Only) -->
+            <div id="courseStatisticsSection" class="section hidden">
+                <h2><i class="fas fa-chart-pie"></i> COURSE STATISTICS</h2>
+                <div id="statisticsContent"></div>
+                <button onclick="showMainMenu()" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Menu</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
